@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FlooZManager</string>
+    <string name="bienvenu">Bienvenue dans FlooZManager</string>
+    <string name="hint">Entrez vos dépenses/gains</string>
+    <string name="calc">Calculer</string>
+    <string name="textCal">Résultats :</string>
+    <string name="textGain">Chiffre d\'affaire :</string>
+    <string name="textDep">Dépenses :</string>
+    <string name="euro">€</string>
+</resources>

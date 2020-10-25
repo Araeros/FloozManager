@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimaryLight">
+
+    <GridLayout>
+        <LinearLayout
+            android:id="@+id/activity_main_bandeau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_bandeau"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp">
+            </TextView>
+
+            <ImageView
+                android:id="@+id/activity_main_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="80dp"
+                android:src="@mipmap/flooz_logo">
+            </ImageView>
+
+        </LinearLayout>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/activity_main_bienvenu_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_title"
+        android:text="@string/bienvenu"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <EditText
+            android:inputType="numberSigned"
+            android:id="@+id/activity_main_val_entree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/hint"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+
+        <TextView
+            android:text="@string/euro"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/euro_symb"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/activity_main_calculer_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:text="@string/calc" />
+
+    <GridLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <GridLayout
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/activity_main_affiche_cal_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="@string/textCal"/>
+
+            <TextView
+                android:id="@+id/activity_main_affiche_depenses_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="@string/textDep"/>
+
+            <TextView
+                android:id="@+id/activity_main_affiche_gain_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="@string/textGain"/>
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/activity_main_gain_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:id="@+id/activity_main_depenses_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:id="@+id/activity_main_cal_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"/>
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_gravity="end"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="@string/euro"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="6dp"
+                android:textSize="@dimen/euro_symb"
+                android:layout_gravity="start"/>
+
+            <TextView
+                android:text="@string/euro"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="6dp"
+                android:textSize="@dimen/euro_symb"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:text="@string/euro"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="6dp"
+                android:textSize="@dimen/euro_symb"
+                android:layout_gravity="bottom"/>
+
+        </GridLayout>
+    </GridLayout>
+    <!--
+    <com.fabernovel.d3library.D3View
+        android:id="@+id/activity_main_graph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginHorizontal="@dimen/margin_huge">
+    </com.fabernovel.d3library.D3View>
+    -->
+
+</GridLayout>
