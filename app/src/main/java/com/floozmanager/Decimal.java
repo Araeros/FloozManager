@@ -2,6 +2,8 @@ package com.floozmanager;
 
 import android.util.Log;
 
+import java.util.StringTokenizer;
+
 public class Decimal {
     private int intPart;
     private int decPart;
@@ -16,7 +18,7 @@ public class Decimal {
         decPart = dp;
     }
 
-    public void sum(Decimal otherDecimal) {
+    public void ajouter(Decimal otherDecimal) {
         this.addInt(otherDecimal.intPart);
         this.addDec(otherDecimal.decPart);
         if (this.decPart >= 100){
@@ -53,16 +55,28 @@ public class Decimal {
         return decimal;
     }
 
-    public int isNull() {
+    public boolean isNull() {
         if (this.intPart == 0) {
             if (this.decPart == 0) {
-                return 1;
+                return true;
             } else {
-                return 0;
+                return false;
             }
         } else {
-            return 0;
+            return false;
         }
+    }
+
+    public void stringToDecimal(StringTokenizer separateur){
+        this.intPart = Integer.parseInt(separateur.nextToken());
+        this.decPart = Integer.parseInt(separateur.nextToken());
+    }
+
+    public boolean isNegative() {
+        if (this.intPart < 0) {
+            return true;
+        }
+        return false;
     }
 
     public float diviser(Decimal diviseur) {

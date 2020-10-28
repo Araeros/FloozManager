@@ -57,7 +57,7 @@
         android:layout_gravity="center_horizontal">
 
         <EditText
-            android:inputType="numberSigned"
+            android:inputType="numberSigned|numberDecimal"
             android:id="@+id/activity_main_val_entree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,15 +198,4 @@
 
         </GridLayout>
     </GridLayout>
-    <!--
-    <com.fabernovel.d3library.D3View
-        android:id="@+id/activity_main_graph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_marginHorizontal="@dimen/margin_huge">
-    </com.fabernovel.d3library.D3View>
-    -->
-
 </GridLayout>

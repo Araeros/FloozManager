@@ -19,20 +19,38 @@ public class Resultats {
         this.chiffreAffaire = ca;
     }
 
-    public void calculerPerte (int newVal) {
-        this.perte.addInt(newVal);
-    }
-
-    public void calculerChiffreAffaire (int newVal) {
-        this.chiffreAffaire.addInt(newVal);
-    }
-
     public void calculerBenefice () {
         this.benefice.reset();
         Decimal depense = this.perte.copy();
         Decimal gain = this.chiffreAffaire.copy();
-        gain.sum(depense);
-        this.benefice.sum(gain);
+        gain.ajouter(depense);
+        this.benefice.ajouter(gain);
+    }
+
+    public void calculerPerte (EntryString entree){
+        if (this.perteIsNull()){
+            this.perte = entree.toDecimal();
+        } else {
+            this.perte.ajouter(entree.toDecimal());
+        }
+
+    }
+
+    public void calculerChiffreAffaire (EntryString entree){
+        if (this.chiffreAffaireIsNull()){
+            this.chiffreAffaire=entree.toDecimal();
+        } else {
+            this.chiffreAffaire.ajouter(entree.toDecimal());
+        }
+
+    }
+
+    public boolean perteIsNull() {
+        return this.perte.isNull();
+    }
+
+    public boolean chiffreAffaireIsNull() {
+        return this.chiffreAffaire.isNull();
     }
 
     public Decimal[] getTableau2Elements() {
@@ -41,12 +59,12 @@ public class Resultats {
     }
     
     public float[] getRatio() {
-        if (this.perte.isNull() == 0 && this.chiffreAffaire.isNull() == 0){
+        if (!this.perte.isNull() && !this.chiffreAffaire.isNull()){
             float ratio = this.chiffreAffaire.diviser(this.perte);
             float[] poids = {1-(1/ratio),1/ratio};
             return poids;
         }
-        if (this.perte.isNull() == 0) {
+        if (!this.perte.isNull()) {
             float[] poids = {1,0};
             return poids;
         }
