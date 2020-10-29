@@ -2,9 +2,20 @@ package com.floozmanager;
 
 import android.util.Log;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable
+
 public class Resultats {
+
+    @DatabaseField( generatedId = true )
+    private int idResultats;
+    @DatabaseField
     private Decimal benefice;
+    @DatabaseField
     private Decimal perte;
+    @DatabaseField
     private Decimal chiffreAffaire;
 
     public Resultats () {

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import Data.DatabaseManager;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView mAffGainTxt;
     private TextView mAffDepTxt;
     private TextView mAffLog;
+    private TextView mAffRes;
+
+    private DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +48,12 @@ public class MainActivity extends AppCompatActivity {
         mAffGainTxt = findViewById(R.id.activity_main_affiche_gain_txt);
         mAffDepTxt = findViewById(R.id.activity_main_affiche_depenses_txt);
         mAffLog = findViewById(R.id.activity_main_affiche_log);
+        mAffRes = findViewById(R.id.activity_main_affiche_resultats);
 
         //Variable
         Resultats resultats = new Resultats();
         LogText logsTest = new LogText();
+        databaseManager = new DatabaseManager(this);
 
         //Désactivation du bouton avant saisie
         mCalculerBtn.setEnabled(false);
@@ -68,10 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        //FIXME Les chiffres négatif entre 0 et -1 sont comptés comme positifs
         //Comportement de l'application lors du click sur le bouton
-        //FIXME Les chiffres à virgules sont mal gérés
-        //FIXME -4.5 fait augmenter la perte de 1 (exemple : - 24 +(-4.5) = -23 !?!?) --------- car -4 + 5 = 1 ---------
         mCalculerBtn.setOnClickListener(v -> {
             //L'utilisateur vient de cliquer sur le bouton
             EntryString entree = new EntryString(mValEntree.getText().toString());
@@ -91,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
             mGainTxt.setText(resultats.toStringBenefice());
             mValEntree.setText("");
             mAffLog.setText(logsTest.toString());
+
+            //Comportement de la BDD
+            databaseManager.insertResultat(resultats);
+            databaseManager.close();
 
         });
     }

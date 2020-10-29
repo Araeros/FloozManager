@@ -15,6 +15,12 @@ public class EntryString {
         if (!this.chaineEntree.contains(SEPARATEUR)) {
             this.chaineEntree+=".00";
         }
+        StringTokenizer separation = new StringTokenizer(chaineEntree, SEPARATEUR);
+        String entier = separation.nextToken();
+        String decimal = separation.nextToken();
+        if (decimal.length() < 2) {
+            this.chaineEntree+="0";
+        }
     }
 
     public boolean testDecimal() {

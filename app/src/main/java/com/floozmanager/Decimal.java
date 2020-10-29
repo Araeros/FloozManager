@@ -33,10 +33,18 @@ public class Decimal {
 
     public void ajouter(Decimal otherDecimal) {
         this.intPart += otherDecimal.intPart;
-        this.decPart += otherDecimal.decPart;
-        if (this.decPart > 100) {
-            this.intPart += 1;
-            this.decPart -= 100;
+        if (otherDecimal.isNegative()) {
+            this.decPart += otherDecimal.decPart;
+            if (this.decPart >=100) {
+                this.intPart -= 1;
+                this.decPart -= 100;
+            }
+        } else {
+            this.decPart += otherDecimal.decPart;
+            if (this.decPart >= 100) {
+                this.intPart += 1;
+                this.decPart -= 100;
+            }
         }
     }
 
