@@ -29,4 +29,9 @@ public class EntryString {
         return decimalEntree;
     }
 
+    @Override
+    public String toString() {
+        return this.chaineEntree;
+    }
+
 }

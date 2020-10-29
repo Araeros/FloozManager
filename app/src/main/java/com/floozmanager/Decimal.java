@@ -18,23 +18,31 @@ public class Decimal {
         decPart = dp;
     }
 
+    public void soustraire(Decimal otherDecimal) {
+        if (!otherDecimal.isNegative()) {
+            this.intPart -= otherDecimal.intPart;
+        } else {
+            this.intPart += otherDecimal.intPart;
+        }
+        this.decPart -= otherDecimal.decPart;
+        if (this.decPart < 0) {
+            this.intPart -= 1;
+            this.decPart += 100;
+        }
+    }
+
     public void ajouter(Decimal otherDecimal) {
-        this.addInt(otherDecimal.intPart);
-        this.addDec(otherDecimal.decPart);
-        if (this.decPart >= 100){
-            this.addInt(1);
-            this.addDec(-100);
+        this.intPart += otherDecimal.intPart;
+        this.decPart += otherDecimal.decPart;
+        if (this.decPart > 100) {
+            this.intPart += 1;
+            this.decPart -= 100;
         }
     }
 
     public void reset(){
         this.intPart = 0;
         this.decPart = 0;
-    }
-
-    public Decimal copy() {
-        Decimal copy = new Decimal(this.intPart,this.decPart);
-        return copy;
     }
 
     public void addInt(int newInt) {
@@ -79,15 +87,29 @@ public class Decimal {
         return false;
     }
 
-    public float diviser(Decimal diviseur) {
-        return this.toFloat()/diviseur.toFloat();
-    }
-
     public String toStringIntPart() {
         return Integer.toString(intPart);
     }
 
     public String toStringDecPart() {
         return Integer.toString(decPart);
+    }
+
+    public int getIntPart() {
+        return intPart;
+    }
+
+    public int getDecPart() {
+        return decPart;
+    }
+
+    public void copie(Decimal cible){
+        this.intPart = cible.intPart;
+        this.decPart = cible.decPart;
+    }
+
+    @Override
+    public String toString() {
+        return this.toStringIntPart() + "." + toStringDecPart();
     }
 }

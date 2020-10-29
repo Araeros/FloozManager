@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mAffCalTxt;
     private TextView mAffGainTxt;
     private TextView mAffDepTxt;
+    private TextView mAffLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
         mAffCalTxt = findViewById(R.id.activity_main_affiche_cal_txt);
         mAffGainTxt = findViewById(R.id.activity_main_affiche_gain_txt);
         mAffDepTxt = findViewById(R.id.activity_main_affiche_depenses_txt);
+        mAffLog = findViewById(R.id.activity_main_affiche_log);
 
         //Variable
         Resultats resultats = new Resultats();
+        LogText logsTest = new LogText();
 
         //Désactivation du bouton avant saisie
         mCalculerBtn.setEnabled(false);
@@ -68,22 +71,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Comportement de l'application lors du click sur le bouton
         //FIXME Les chiffres à virgules sont mal gérés
-        //FIXME -4.5 fait augmenter la perte de 1 (exemple : - 24 +(-4.5) = -23 !?!?)
+        //FIXME -4.5 fait augmenter la perte de 1 (exemple : - 24 +(-4.5) = -23 !?!?) --------- car -4 + 5 = 1 ---------
         mCalculerBtn.setOnClickListener(v -> {
             //L'utilisateur vient de cliquer sur le bouton
             EntryString entree = new EntryString(mValEntree.getText().toString());
+            logsTest.concat(entree.toDecimal().toString());
+
             if (entree.testDecimal()) {
                 resultats.calculerPerte(entree);
-                //resultats.calculerPerte(Integer.parseInt(mValEntree.getText().toString()));
             } else {
                 resultats.calculerChiffreAffaire(entree);
-                //resultats.calculerChiffreAffaire(Integer.parseInt(mValEntree.getText().toString()));
             }
             resultats.calculerBenefice();
+            logsTest.concat(resultats.toString());
+
+            //Mise à jour de la vue
             mCalTxt.setText(resultats.toStringChiffreAffaire());
             mDepTxt.setText(resultats.toStringPerte());
             mGainTxt.setText(resultats.toStringBenefice());
             mValEntree.setText("");
+            mAffLog.setText(logsTest.toString());
 
         });
     }

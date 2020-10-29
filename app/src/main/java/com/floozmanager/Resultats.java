@@ -21,10 +21,10 @@ public class Resultats {
 
     public void calculerBenefice () {
         this.benefice.reset();
-        Decimal depense = this.perte.copy();
-        Decimal gain = this.chiffreAffaire.copy();
-        gain.ajouter(depense);
-        this.benefice.ajouter(gain);
+        Decimal cout = new Decimal(this.perte.getIntPart(), this.perte.getDecPart());
+        Decimal profit = new Decimal(this.chiffreAffaire.getIntPart(), this.chiffreAffaire.getDecPart());
+        profit.soustraire(cout);
+        this.benefice.copie(profit);
     }
 
     public void calculerPerte (EntryString entree){
@@ -53,34 +53,20 @@ public class Resultats {
         return this.chiffreAffaire.isNull();
     }
 
-    public Decimal[] getTableau2Elements() {
-        Decimal[] decimals = {this.chiffreAffaire,this.perte};
-        return decimals;
-    }
-    
-    public float[] getRatio() {
-        if (!this.perte.isNull() && !this.chiffreAffaire.isNull()){
-            float ratio = this.chiffreAffaire.diviser(this.perte);
-            float[] poids = {1-(1/ratio),1/ratio};
-            return poids;
-        }
-        if (!this.perte.isNull()) {
-            float[] poids = {1,0};
-            return poids;
-        }
-        float[] poids = {0,1};
-        return poids;
-    }
-
     public String toStringPerte() {
-        return this.perte.toStringIntPart();
+        return this.perte.toString();
     }
 
     public String toStringBenefice() {
-        return this.benefice.toStringIntPart();
+        return this.benefice.toString();
     }
 
     public String toStringChiffreAffaire() {
-        return this.chiffreAffaire.toStringIntPart();
+        return this.chiffreAffaire.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Chiffre d'Affaire : " + toStringChiffreAffaire() + " - Pertes : " + toStringPerte() + " - Bénéfices : " + toStringBenefice() + "\n";
     }
 }
