@@ -19,31 +19,66 @@ public class Decimal {
     }
 
     public void soustraire(Decimal otherDecimal) {
-        if (!otherDecimal.isNegative()) {
-            this.intPart -= otherDecimal.intPart;
+        if (otherDecimal.decPart < 0) {
+            otherDecimal.inverserValDecimal();
+            this.decPart -= otherDecimal.decPart;
+            while (this.decPart >= 100) {
+                this.intPart += 1;
+                this.decPart -= 100;
+            }
+            while (this.decPart < 0) {
+                this.intPart -= 1;
+                this.decPart += 100;
+            }
         } else {
-            this.intPart += otherDecimal.intPart;
+            if (!otherDecimal.isNegative()) {
+                this.intPart -= otherDecimal.intPart;
+            } else {
+                this.intPart += otherDecimal.intPart;
+            }
+            this.decPart -= otherDecimal.decPart;
+            while (this.decPart < 0) {
+                this.intPart -= 1;
+                this.decPart += 100;
+            }
         }
-        this.decPart -= otherDecimal.decPart;
+    }
+
+    public void inverserValDecimal() {
         if (this.decPart < 0) {
-            this.intPart -= 1;
-            this.decPart += 100;
+            int tmp = this.decPart;
+            this.decPart = tmp - 2*tmp;
         }
     }
 
     public void ajouter(Decimal otherDecimal) {
-        this.intPart += otherDecimal.intPart;
-        if (otherDecimal.isNegative()) {
-            this.decPart += otherDecimal.decPart;
-            if (this.decPart >=100) {
+        if (otherDecimal.decPart < 0) {
+            //Donc si decPart est négative elle devient positive
+            this.inverserValDecimal();
+            //Si elle était négative c'est qu'on calcul forcément une perte donc on enlève la nouvelle valeur à l'ancienne
+            this.decPart -= otherDecimal.decPart;
+            while (this.decPart < 0) {
+                this.intPart += 1;
+                this.decPart += 100;
+            }
+            while (this.decPart >= 100) {
                 this.intPart -= 1;
                 this.decPart -= 100;
             }
         } else {
-            this.decPart += otherDecimal.decPart;
-            if (this.decPart >= 100) {
-                this.intPart += 1;
-                this.decPart -= 100;
+            this.intPart += otherDecimal.intPart;
+            if (otherDecimal.isNegative()) {
+                this.decPart += otherDecimal.decPart;
+                while (this.decPart >= 100) {
+                    this.intPart -= 1;
+                    this.decPart -= 100;
+                }
+            } else {
+                this.decPart += otherDecimal.decPart;
+                while (this.decPart >= 100) {
+                    this.intPart += 1;
+                    this.decPart -= 100;
+                }
             }
         }
     }
@@ -72,24 +107,26 @@ public class Decimal {
     }
 
     public boolean isNull() {
-        if (this.intPart == 0) {
-            if (this.decPart == 0) {
-                return true;
-            } else {
-                return false;
-            }
+        if (this.intPart == 0 && this.decPart == 0) {
+            return true;
         } else {
             return false;
         }
     }
 
-    public void stringToDecimal(StringTokenizer separateur){
-        this.intPart = Integer.parseInt(separateur.nextToken());
-        this.decPart = Integer.parseInt(separateur.nextToken());
+    public void stringToDecimal(StringTokenizer separateur) {
+        String intString = separateur.nextToken();
+        if (intString.contains("-0")) {
+            int intDecPart = Integer.parseInt(separateur.nextToken());
+            this.decPart =  intDecPart - 2*intDecPart;
+        } else {
+            this.decPart = Integer.parseInt(separateur.nextToken());
+        }
+        this.intPart = Integer.parseInt(intString);
     }
 
     public boolean isNegative() {
-        if (this.intPart < 0) {
+        if (this.intPart < 0 || this.decPart < 0) {
             return true;
         }
         return false;

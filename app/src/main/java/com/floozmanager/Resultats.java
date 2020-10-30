@@ -34,8 +34,12 @@ public class Resultats {
         this.benefice.reset();
         Decimal cout = new Decimal(this.perte.getIntPart(), this.perte.getDecPart());
         Decimal profit = new Decimal(this.chiffreAffaire.getIntPart(), this.chiffreAffaire.getDecPart());
-        profit.soustraire(cout);
-        this.benefice.copie(profit);
+        if (profit.isNull()) {
+            this.benefice.copie(cout);
+        } else {
+            profit.soustraire(cout);
+            this.benefice.copie(profit);
+        }
     }
 
     public void calculerPerte (EntryString entree){
