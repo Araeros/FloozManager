@@ -21,6 +21,9 @@ public class EntryString {
         if (decimal.length() < 2) {
             this.chaineEntree+="0";
         }
+        if (decimal.length() > 2){
+            this.chaineEntree = this.chaineEntree.substring(0, entier.length()+3);
+        }
     }
 
     public boolean testDecimal() {
