@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParameterActivity"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight">
+
+    <GridLayout
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/bandeau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_bandeau"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp">
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/logo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:src="@mipmap/flooz_logo"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_gravity="right">
+            </ImageButton>
+
+        </LinearLayout>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/activity_parameter_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_title"
+        android:text="@string/parametres"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:orientation="vertical">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/margin_small"
+                android:text="@string/reset_txt"/>
+
+            <Button
+                android:id="@+id/activity_parameter_reset_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="@string/reset"
+                android:gravity="center_vertical" />
+
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

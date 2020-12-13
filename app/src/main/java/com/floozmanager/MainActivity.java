@@ -2,6 +2,7 @@ package com.floozmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import Data.DatabaseManager;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mAffDepTxt;
     private TextView mAffLog;
     private TextView mAffRes;
+    private ImageButton mParamBtn;
 
     private DatabaseManager databaseManager;
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mAffDepTxt = findViewById(R.id.activity_main_affiche_depenses_txt);
         mAffLog = findViewById(R.id.activity_main_affiche_log);
         mAffRes = findViewById(R.id.activity_main_affiche_resultats);
+        mParamBtn = findViewById(R.id.activity_main_parameter_btn);
 
         //Variable
         Resultats resultats = new Resultats();
@@ -57,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Désactivation du bouton avant saisie
         mCalculerBtn.setEnabled(false);
+
+        //Comportement de l'application lors du click surle bouton Paramètres
+        mParamBtn.setOnClickListener(v -> {
+            Intent parameterActivity = new Intent(MainActivity.this, ParameterActivity.class);
+            startActivity(parameterActivity);
+        });
 
         //Comportement de l'application lors de la saisie d'un texte
         mValEntree.addTextChangedListener(new TextWatcher() {
@@ -75,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //FIXME Les chiffres négatif entre 0 et -1 sont comptés comme positifs
-        //Comportement de l'application lors du click sur le bouton
+
+        //Comportement de l'application lors du click sur le bouton Calculer
         mCalculerBtn.setOnClickListener(v -> {
             //L'utilisateur vient de cliquer sur le bouton
             EntryString entree = new EntryString(mValEntree.getText().toString());

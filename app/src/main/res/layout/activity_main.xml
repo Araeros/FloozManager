@@ -9,9 +9,10 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimaryLight">
 
-    <GridLayout>
+    <GridLayout
+        android:layout_width="match_parent">
         <LinearLayout
-            android:id="@+id/activity_main_bandeau"
+            android:id="@+id/bandeau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -30,14 +31,31 @@
             </TextView>
 
             <ImageView
-                android:id="@+id/activity_main_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxHeight="80dp"
-                android:src="@mipmap/flooz_logo">
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/flooz_logo"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_gravity="right">
             </ImageView>
 
         </LinearLayout>
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorAccent">
+
+        <ImageButton
+            android:id="@+id/activity_main_parameter_btn"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/colorAccent"
+            android:src="@mipmap/parameter"/>
+
     </GridLayout>
 
     <TextView
@@ -198,4 +216,29 @@
 
         </GridLayout>
     </GridLayout>
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+        <TextView
+            android:id="@+id/activity_main_affiche_log"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+        <TextView
+            android:id="@+id/activity_main_affiche_resultats"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
 </GridLayout>

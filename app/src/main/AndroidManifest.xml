@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FlooZManager">
-        <activity android:name=".MyChart"></activity>
+        <activity android:name=".ParameterActivity"></activity>
+        <activity android:name=".MyChart" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

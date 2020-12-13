@@ -7,4 +7,7 @@
     <string name="textGain">Chiffre d\'affaire :</string>
     <string name="textDep">Dépenses :</string>
     <string name="euro">€</string>
+    <string name = "parametres">Paramètres</string>
+    <string name = "reset_txt">Réinitialisation des données sauvegardées</string>
+    <string name = "reset">Reset</string>
 </resources>
